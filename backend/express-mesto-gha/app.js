@@ -9,6 +9,7 @@ const { login, createUser } = require('./controllers/users');
 const { auth } = require('./middlewares/auth');
 const { errorMiddleware } = require('./middlewares/errorMiddleware');
 const { NotFoundError } = require('./errors/NotFound');
+const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const app = express();
 app.use(express.json());
@@ -85,6 +86,9 @@ mongoose
     app.use('*', (req, res, next) => {
       next(new NotFoundError('Маршрут не найден'));
     });
+
+    app.use(errorLogger);
+
     app.use(
       errors({
         statusCode: 400,
