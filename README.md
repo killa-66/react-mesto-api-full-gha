@@ -9,8 +9,8 @@
 
 ## Ссылки на проект
 
-IP-адрес x.x.x.x
+IP-адрес 158.160.102.227
 
-Frontend https://...
+Frontend https://killa.students.nomoredomains.xyz/
 
-Backend https://...
+Backend https://api.killa.students.nomoredomains.xyz/
