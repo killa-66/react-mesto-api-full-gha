@@ -18,7 +18,7 @@ class Api {
     }
 
     getUserInfo() {
-        return fetch(this.baseUrl + 'users/me', {
+        return fetch(this.baseUrl + '/users/me', {
             method: 'GET',
             headers: this.headers
         })
@@ -65,7 +65,7 @@ class Api {
     }
 
     patchUserInfo({ name, about }) {
-        return fetch(this.baseUrl + 'users/me', {
+        return fetch(this.baseUrl + '/users/me', {
             method: 'PATCH',
             headers: this.headers,
             body: JSON.stringify({
@@ -125,7 +125,7 @@ class Api {
 }
 
 export const api = new Api({
-    baseUrl: 'api.killa.students.nomoredomains.xyz',
+    baseUrl: 'https://killa.students.nomoredomains.xyz',
     headers: {
         authorization: '5a422b60-2df4-4871-b609-57e249cc283e',
         'Content-Type': 'application/json'

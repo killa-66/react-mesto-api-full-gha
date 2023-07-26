@@ -8,6 +8,8 @@ const { InternalServerError } = require('../errors/InternalServer');
 const { NotFoundError } = require('../errors/NotFound');
 const { ConflictError } = require('../errors/ConflictError');
 
+const { JWT_SECRET, NODE_ENV } = process.env;
+
 const createUser = (req, res, next) => {
   // eslint-disable-next-line
   const { name, about, avatar, email, password } = req.body;

@@ -10,15 +10,20 @@ const { auth } = require('./middlewares/auth');
 const { errorMiddleware } = require('./middlewares/errorMiddleware');
 const { NotFoundError } = require('./errors/NotFound');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
-const cors = require('./middlewares/cors');
+const cors = require('cors');
 
 const app = express();
-app.use(cors);
 app.use(express.json());
+app.use(cors({
+  origin: ['http://localhost:3001', 'https://killa.students.nomoredomains.xyz'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 
 mongoose
   .connect('mongodb://127.0.0.1:27017/mestodb')
   .then(() => {
+    // app.use(cors);
     app.use(bodyParser.json());
     app.use(cookieParser());
     app.use(requestLogger);
