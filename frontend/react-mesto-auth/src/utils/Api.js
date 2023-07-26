@@ -125,5 +125,5 @@ class Api {
 }
 
 export const api = new Api({
-    baseUrl: 'https://api.killa.students.nomoredomains.xyz/',
+    baseUrl: 'https://api.killa.students.nomoredomains.xyz',
 })
