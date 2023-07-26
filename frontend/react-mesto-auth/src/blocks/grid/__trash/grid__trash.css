@@ -1,0 +1,16 @@
+.grid__trash {
+    position: absolute;
+    width: 18px;
+    height: 19px;
+    background: none;
+    background-image: url(../../../images/Trash.png);
+    border: none;
+    background-repeat: no-repeat;
+    padding: 0;
+    right: 20px;
+    top: 20px;
+}
+ .grid__trash:hover {
+    opacity: 0.6;
+    cursor: pointer;
+ }

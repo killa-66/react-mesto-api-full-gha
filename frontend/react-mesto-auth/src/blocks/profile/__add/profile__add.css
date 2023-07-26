@@ -1,0 +1,37 @@
+.profile__add {
+    background: none;
+    width: 150px;
+    padding: 25px;
+    background-image: url(../../../images/Plus.svg);
+    margin: auto 0 auto 244px;
+    background-repeat: no-repeat;
+    background-position: center;
+    border: 2px solid #FFFFFF;
+    border-radius: 2px;
+
+}
+
+.profile__add:hover {
+    opacity: 0.6;
+    cursor: pointer;
+}
+
+@media (max-width: 897px) {
+    .profile__add {
+        margin: auto auto;
+    }
+}
+@media (max-width: 690px) {
+    .profile__add {
+        margin: 36px auto 0;
+        width: 282px;
+    }
+}
+
+@media (max-width: 600px) {
+    .profile__add {
+        margin-top: 33px;
+        background-size: 15px;
+        padding: 23px;
+    }
+}

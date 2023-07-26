@@ -1,0 +1,6 @@
+.from-public__section {
+  margin: 0 0 30px;
+}
+.from-public__section:nth-last-of-type(1) {
+  margin: 0;
+}

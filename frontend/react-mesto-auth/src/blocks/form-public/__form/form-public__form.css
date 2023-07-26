@@ -1,0 +1,9 @@
+.form-public__form {
+  min-width: 358px;
+}
+
+@media (max-width: 600px) {
+  .form-public__form{
+    min-width: 260px;
+  }
+}

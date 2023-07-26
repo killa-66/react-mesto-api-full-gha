@@ -1,0 +1,7 @@
+.grid__signature {
+    display: flex;
+    justify-content: space-between;
+    max-width: 246px;
+    margin: 20px 20px 0 21px;
+    align-items: flex-start;
+}

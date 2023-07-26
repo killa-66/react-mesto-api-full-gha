@@ -1,0 +1,23 @@
+.form-public__input {
+  background: none;
+  width: 100%;
+  border: none;
+  border-bottom: solid 2px white;
+  color: white;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.form-public__input::placeholder {
+  color: white;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+}
+
+@media (max-width:600px) {
+  .form-public__input{
+  width: 256px;
+  }
+}

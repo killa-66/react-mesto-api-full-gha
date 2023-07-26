@@ -1,0 +1,6 @@
+.header__container {
+  display: flex;
+  width: 100vw;
+  justify-content: inherit;
+  margin-top: 27px;
+}

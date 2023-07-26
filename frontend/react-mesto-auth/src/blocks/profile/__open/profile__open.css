@@ -1,0 +1,30 @@
+.profile__open {
+    background: none;
+    border: none;
+    background-size: cover;
+    padding: 0;
+    width: 24px;
+    height: 24px;
+    background-image: url(../../../images/Edit_Button.svg);
+    margin-top: 12px;
+    margin-left: 15px;
+}
+
+.profile__open:hover {
+    opacity: 0.6;
+    cursor: pointer;
+}
+
+@media (max-width: 690px) {
+    .profile__open {
+        margin-top: 0;
+        margin-right: 0;
+    }
+}
+
+@media (max-width:600px) {
+    .profile__open {
+        width: 18px;
+        height: 18px;
+    }
+}

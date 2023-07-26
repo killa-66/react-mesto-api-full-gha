@@ -1,0 +1,13 @@
+.form-public__title {
+  margin: 0;
+  margin-bottom: 50px;
+  font-size: 24px;
+  font-weight: 900;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .form-public__title{
+    margin-bottom: 40px;
+  }
+}

@@ -1,0 +1,22 @@
+.form-public__submit {
+  width: 358px;
+  min-height: 50px;
+  background-color: white;
+  margin-bottom: 15px;
+  margin-top: 216px;
+  border: none;
+  border-radius: 2px;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .form-public__submit{
+    width: 260px;
+    min-height: 46px;
+    margin-top: 173px;
+    margin-bottom: 20px;
+  }
+}

@@ -1,0 +1,10 @@
+.job-error {
+    max-width: 362px;
+    margin-top: 3px;
+}
+
+@media (max-width: 600px) {
+    .job-error {
+        max-width: 242px;
+    }
+}

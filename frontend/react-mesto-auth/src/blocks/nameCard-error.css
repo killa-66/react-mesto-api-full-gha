@@ -1,0 +1,13 @@
+.nameCard-error {
+    max-width: 362px;
+    margin-top: 3px;
+    /* position: absolute;
+    top: 140px;
+    left: 36px; */
+}
+
+@media (max-width: 600px) {
+    .nameCard-error {
+        max-width: 242px;
+    }
+}

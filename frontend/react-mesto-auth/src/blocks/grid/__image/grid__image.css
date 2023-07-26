@@ -1,0 +1,10 @@
+.grid__image {
+    width: 282px;
+    height: 282px;
+    object-fit: fill;
+    display: block;
+    cursor: pointer;
+    border-radius: 10px 10px 0px 0px;
+    background-color: black;
+    color: white;
+}
