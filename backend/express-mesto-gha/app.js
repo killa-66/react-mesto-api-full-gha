@@ -13,17 +13,22 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 const cors = require('cors');
 
 const app = express();
-app.use(express.json());
 app.use(cors({
-  origin: ['http://localhost:3001', 'https://killa.students.nomoredomains.xyz'],
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
+  origin: ['http://killa.students.nomoredomains.xyz',
+    'https://killa.students.nomoredomains.xyz',
+    'http://localhost:3000',
+    'http://localhost:3001'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'HEAD', 'PATCH'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  preflightContinue: true,
+  optionsSuccessStatus: 200,
+  credentials: true,
 }));
+app.use(express.json());
 
 mongoose
   .connect('mongodb://127.0.0.1:27017/mestodb')
   .then(() => {
-    // app.use(cors);
     app.use(bodyParser.json());
     app.use(cookieParser());
     app.use(requestLogger);
