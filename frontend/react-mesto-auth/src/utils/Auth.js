@@ -36,12 +36,12 @@ class Auth {
         "Authorization": `Bearer ${jwt}`
       }
     })
-      .then(this._checkResponse)
+      .then(this._checkRes)
   }
 }
 
 export const auth = new Auth({
-  baseUrl: 'https://api.killa.students.nomoredomains.xyz',
+  baseUrl: 'api.killa.students.nomoredomains.xyz',
   headers: {
     'Content-Type': 'application/json'
   }
