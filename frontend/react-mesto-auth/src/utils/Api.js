@@ -18,7 +18,7 @@ class Api {
     }
 
     getUserInfo() {
-        return fetch(this.baseUrl + '/users/me', {
+        return fetch(this.baseUrl + 'users/me', {
             method: 'GET',
             headers: this.headers
         })
