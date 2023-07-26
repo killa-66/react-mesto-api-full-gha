@@ -10,8 +10,10 @@ const { auth } = require('./middlewares/auth');
 const { errorMiddleware } = require('./middlewares/errorMiddleware');
 const { NotFoundError } = require('./errors/NotFound');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
+const cors = require('./middlewares/cors');
 
 const app = express();
+app.use(cors);
 app.use(express.json());
 
 mongoose
