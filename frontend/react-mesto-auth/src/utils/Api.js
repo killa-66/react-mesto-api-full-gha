@@ -65,7 +65,7 @@ class Api {
     }
 
     patchUserInfo({ name, about }) {
-        return fetch(this.baseUrl + '/users/me', {
+        return fetch(this.baseUrl + 'users/me', {
             method: 'PATCH',
             headers: this.headers,
             body: JSON.stringify({
