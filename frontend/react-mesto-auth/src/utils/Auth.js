@@ -41,7 +41,7 @@ class Auth {
 }
 
 export const auth = new Auth({
-  baseUrl: 'https://auth.nomoreparties.co',
+  baseUrl: 'https://api.killa.students.nomoredomains.xyz/',
   headers: {
     'Content-Type': 'application/json'
   }
