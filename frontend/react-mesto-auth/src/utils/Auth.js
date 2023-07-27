@@ -12,7 +12,7 @@ class Auth {
   }
 
   register(data) {
-    return fetch(`${this.baseUrl}/signup`, {
+    return fetch(`${this.baseUrl}/sign-up`, {
       method: "POST",
       headers: this.headers,
       body: JSON.stringify(data)
@@ -21,7 +21,7 @@ class Auth {
   }
 
   login(data) {
-    return fetch(`${this.baseUrl}/signin`, {
+    return fetch(`${this.baseUrl}/sign-in`, {
       method: "POST",
       headers: this.headers,
       body: JSON.stringify(data)

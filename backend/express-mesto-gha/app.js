@@ -28,7 +28,7 @@ mongoose
       }, 0);
     });
     app.post(
-      '/signin',
+      '/sign-in',
       celebrate({
         body: Joi.object().keys({
           email: Joi.string().email().required().messages({
@@ -50,7 +50,7 @@ mongoose
       }, 0);
     });
     app.post(
-      '/signup',
+      '/sign-up',
       celebrate({
         body: Joi.object().keys({
           email: Joi.string().email().required().messages({
