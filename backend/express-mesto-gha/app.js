@@ -10,20 +10,9 @@ const { auth } = require('./middlewares/auth');
 const { errorMiddleware } = require('./middlewares/errorMiddleware');
 const { NotFoundError } = require('./errors/NotFound');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
-const cors = require('cors');
+const cors = require('./middlewares/cors');
 
 const app = express();
-app.use(cors({
-  origin: ['http://killa.students.nomoredomains.xyz',
-    'https://killa.students.nomoredomains.xyz',
-    'http://localhost:3000',
-    'http://localhost:3001'],
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'HEAD', 'PATCH'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  preflightContinue: true,
-  optionsSuccessStatus: 200,
-  credentials: true,
-}));
 app.use(express.json());
 
 mongoose
@@ -32,6 +21,7 @@ mongoose
     app.use(bodyParser.json());
     app.use(cookieParser());
     app.use(requestLogger);
+    app.use(cors);
     app.get('/crash-test', () => {
       setTimeout(() => {
         throw new Error('Сервер сейчас упадёт');
