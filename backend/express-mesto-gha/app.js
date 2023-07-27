@@ -1,6 +1,5 @@
 const express = require('express');
 const mongoose = require('mongoose');
-require('dotenv').config();
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const { celebrate, Joi, errors } = require('celebrate');
@@ -9,11 +8,8 @@ const { login, createUser } = require('./controllers/users');
 const { auth } = require('./middlewares/auth');
 const { errorMiddleware } = require('./middlewares/errorMiddleware');
 const { NotFoundError } = require('./errors/NotFound');
-const { requestLogger, errorLogger } = require('./middlewares/logger');
-const cors = require('./middlewares/cors');
 
 const app = express();
-app.use(cors);
 app.use(express.json());
 
 mongoose
@@ -21,12 +17,7 @@ mongoose
   .then(() => {
     app.use(bodyParser.json());
     app.use(cookieParser());
-    app.use(requestLogger);
-    app.get('/crash-test', () => {
-      setTimeout(() => {
-        throw new Error('Сервер сейчас упадёт');
-      }, 0);
-    });
+
     app.post(
       '/signin',
       celebrate({
@@ -43,12 +34,6 @@ mongoose
       }),
       login,
     );
-
-    app.get('/crash-test', () => {
-      setTimeout(() => {
-        throw new Error('Сервер сейчас упадёт');
-      }, 0);
-    });
     app.post(
       '/signup',
       celebrate({
@@ -88,9 +73,6 @@ mongoose
     app.use('*', (req, res, next) => {
       next(new NotFoundError('Маршрут не найден'));
     });
-
-    app.use(errorLogger);
-
     app.use(
       errors({
         statusCode: 400,

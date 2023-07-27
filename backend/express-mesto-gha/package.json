@@ -1,7 +1,7 @@
 {
   "name": "express-mesto-gha",
   "version": "0.1.0",
-  "description": "",
+  "description": "[![Tests](../../actions/workflows/tests-13-sprint.yml/badge.svg)](../../actions/workflows/tests-13-sprint.yml) [![Tests](../../actions/workflows/tests-14-sprint.yml/badge.svg)](../../actions/workflows/tests-14-sprint.yml) # Проект Mesto фронтенд + бэкенд",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
@@ -13,7 +13,7 @@
     "url": "git+https://github.com/killa-66/express-mesto-gha.git"
   },
   "keywords": [],
-  "author": "killa66",
+  "author": "Zuev Kirill",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/killa-66/express-mesto-gha.git/issues"
@@ -23,14 +23,11 @@
     "body-parser": "^1.20.2",
     "celebrate": "^15.0.1",
     "cookie-parser": "^1.4.6",
-    "dotenv": "^16.3.1",
     "express": "^4.18.2",
-    "express-winston": "^4.2.0",
     "joi": "^17.9.2",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^7.0.3",
-    "validator": "^13.9.0",
-    "winston": "^3.10.0"
+    "validator": "^13.9.0"
   },
   "devDependencies": {
     "eslint": "^8.36.0",
