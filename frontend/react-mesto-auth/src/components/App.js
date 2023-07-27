@@ -166,7 +166,7 @@ function App() {
       .then(res => {
         setIsCorrectRegistration(true)
         setIsInfoToolTipOpen(true)
-        navigate("/sign-in", { replace: true })
+        navigate("/signin", { replace: true })
       })
       .catch(err => {
         setIsCorrectRegistration(false)
@@ -217,7 +217,7 @@ function App() {
       <CardContext.Provider value={cards}>
         <div className="page">
           {loggedIn ? <Header
-            link={"/sign-in"}
+            link={"/signin"}
             textLink={"Выйти"}
             loggedIn={loggedIn}
             handleActiveMenuClick={handleActiveMenuClick}
@@ -236,8 +236,8 @@ function App() {
               onCardDelete={handleCardDelete}
               loggedIn={loggedIn}
             />} />
-            <Route path="/sign-in" element={loggedIn ? <Navigate to="/" replace /> : <Login onLogin={handleSubmitLogin} />} />
-            <Route path="/sign-up" element={loggedIn ? <Navigate to="/" replace /> : <Register onRegister={handleSubmitRegistration} />} />
+            <Route path="/signin" element={loggedIn ? <Navigate to="/" replace /> : <Login onLogin={handleSubmitLogin} />} />
+            <Route path="/signup" element={loggedIn ? <Navigate to="/" replace /> : <Register onRegister={handleSubmitRegistration} />} />
           </Routes>
 
           {loggedIn ? <Footer /> : ''}

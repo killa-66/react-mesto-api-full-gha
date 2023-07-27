@@ -27,7 +27,7 @@ export default function Register({ onRegister }) {
     <>
       <Header
         email={''}
-        link={'/sign-in'}
+        link={'/signin'}
         textLink={'Войти'}
       />
       <div className="form-public">
@@ -60,7 +60,7 @@ export default function Register({ onRegister }) {
           </section>
           <button type='submit' className='form-public__submit'>Зарегестрироваться</button>
         </form>
-        <NavLink to="/sign-in" className='form-public__link'>Вы уже зарегестрированы? Войти</NavLink>
+        <NavLink to="/signin" className='form-public__link'>Вы уже зарегестрированы? Войти</NavLink>
       </div>
     </>
   )

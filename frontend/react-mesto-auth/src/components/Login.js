@@ -27,7 +27,7 @@ export default function Login({ onLogin }) {
     <>
       <Header
         email={''}
-        link={'/sign-up'}
+        link={'/signup'}
         textLink={'Регистрация'}
       />
       <div className="form-public">
