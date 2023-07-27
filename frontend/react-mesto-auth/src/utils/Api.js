@@ -126,8 +126,4 @@ class Api {
 
 export const api = new Api({
     baseUrl: 'https://api.killa.students.nomoredomains.xyz',
-    headers: {
-        authorization: '5a422b60-2df4-4871-b609-57e249cc283e',
-        'Content-Type': 'application/json'
-    }
 })
