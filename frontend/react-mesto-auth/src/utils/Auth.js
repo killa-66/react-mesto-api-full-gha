@@ -23,6 +23,8 @@ class Auth {
   login(data) {
     return fetch(`${this.baseUrl}/signin`, {
       method: "POST",
+      mode: "cors",
+      credentials: "include",
       headers: this.headers,
       body: JSON.stringify(data)
     })
@@ -41,5 +43,8 @@ class Auth {
 }
 
 export const auth = new Auth({
-  baseUrl: 'https://api.killa.students.nomoredomains.xyz'
+  baseUrl: 'http://localhost:3000',
+  headers: {
+    'Content-Type': 'application/json'
+  }
 })

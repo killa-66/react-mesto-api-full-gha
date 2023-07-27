@@ -8,8 +8,10 @@ const { login, createUser } = require('./controllers/users');
 const { auth } = require('./middlewares/auth');
 const { errorMiddleware } = require('./middlewares/errorMiddleware');
 const { NotFoundError } = require('./errors/NotFound');
+const cors = require('./middlewares/cors');
 
 const app = express();
+app.use(cors);
 app.use(express.json());
 
 mongoose
