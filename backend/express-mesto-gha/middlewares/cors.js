@@ -1,6 +1,8 @@
 const allowedCors = [
   'http://killa.students.nomoredomains.xyz',
   'https://killa.students.nomoredomains.xyz',
+  'http://api.killa.students.nomoredomains.xyz',
+  'https://api.killa.students.nomoredomains.xyz',
   'localhost:3001',
   'http://localhost:3001',
 ];
