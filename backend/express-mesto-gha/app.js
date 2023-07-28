@@ -87,8 +87,8 @@ mongoose
     );
     app.use(errorMiddleware);
 
-    app.listen(3000, () => {
-      console.error('Server started on port 3000');
+    app.listen(4000, () => {
+      console.error('Server started on port 4000');
     });
   })
   .catch((error) => {
