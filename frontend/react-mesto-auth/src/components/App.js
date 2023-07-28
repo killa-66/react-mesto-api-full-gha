@@ -17,6 +17,7 @@ import { Route, Routes, Navigate, useNavigate } from 'react-router-dom';
 import ProtectedRoute from './ProtectedRoute';
 import InfoToolTip from './InfoToolTip';
 import { auth } from '../utils/Auth'
+import Cookies from 'js-cookie'
 
 function App() {
   const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
@@ -39,7 +40,7 @@ function App() {
       Promise.all([api.getUserInfo(), api.getInitialCards()])
         .then(([data, res]) => {
           setCurrentUser(data);
-          setCards(res)
+          setCards(res.data)
         })
         .catch(err =>
           console.log('Error :', err))
@@ -180,7 +181,7 @@ function App() {
       .then(res => {
         setLoggedIn(true)
         setEmail(data.email)
-        localStorage.setItem('jwt', res.token)
+        Cookies.set('jwt', res.token)
       })
       .catch((err) => {
         setIsCorrectRegistration(false);
@@ -190,26 +191,25 @@ function App() {
   }
 
   function handleLogout() {
-    localStorage.removeItem('jwt');
+    Cookies.remove('jwt');
     setLoggedIn(false)
   }
 
   function tokenCheck() {
-    if (localStorage.getItem('jwt')) {
-      const jwt = localStorage.getItem('jwt');
-      if (jwt) {
-        auth.checkToken(jwt)
-          .then(result => {
-            if (result) {
-              api.setToken(jwt);
-              setLoggedIn(true);
-              setEmail(result.data.email)
-            }
-          })
-          .catch((err) => {
-            console.log(`Ошибка проверки токена ${err}`);
-          });
-      }
+    const jwt = Cookies.get('jwt'); // получаем токен из куки
+    console.log(jwt)
+    if (jwt) {
+      auth.checkToken(jwt)
+        .then(result => {
+          if (result) {
+            api.setToken(jwt);
+            setLoggedIn(true);
+            setEmail(result.data.email)
+          }
+        })
+        .catch((err) => {
+          console.log(`Ошибка проверки токена ${err}`);
+        });
     }
   }
 

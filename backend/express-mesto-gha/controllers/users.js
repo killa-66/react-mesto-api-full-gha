@@ -8,6 +8,8 @@ const { InternalServerError } = require('../errors/InternalServer');
 const { NotFoundError } = require('../errors/NotFound');
 const { ConflictError } = require('../errors/ConflictError');
 
+const { JWT_SECRET, NODE_ENV } = process.env;
+
 const createUser = (req, res, next) => {
   // eslint-disable-next-line
   const { name, about, avatar, email, password } = req.body;
@@ -117,7 +119,7 @@ const login = (req, res, next) => {
     .then((user) => {
       const token = jwt.sign(
         { _id: user._id },
-        'T6k397vvT!$3kr',
+        NODE_ENV === 'production' ? JWT_SECRET : 'secret',
         {
           expiresIn: '7d',
         },

@@ -24,19 +24,20 @@ function Main({ onAddPlaceClick, onEditAvatar, onCardClick, onEditProfile, onCar
           <button type="button" aria-label="Добавить" className="profile__add" onClick={onAddPlaceClick}></button>
         </section>
         <section className="grid">
-          {cards.map(item => {
-            return (
-              <Card
-                link={item.link}
-                key={item._id}
-                name={item.name}
-                likesCount={item.likes.length}
-                onCardClick={onCardClick}
-                onCardLike={onCardLike}
-                onCardDelete={onCardDelete}
-                item={item}
-              />)
-          })}
+          {
+            cards.map(item => {
+              return (
+                <Card
+                  link={item.link}
+                  key={item._id}
+                  name={item.name}
+                  likesCount={item.likes.length}
+                  onCardClick={onCardClick}
+                  onCardLike={onCardLike}
+                  onCardDelete={onCardDelete}
+                  item={item}
+                />)
+            })}
         </section>
       </main >
     </>

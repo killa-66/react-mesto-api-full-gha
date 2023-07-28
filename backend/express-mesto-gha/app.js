@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
@@ -36,6 +37,7 @@ mongoose
       }),
       login,
     );
+
     app.post(
       '/signup',
       celebrate({
@@ -71,10 +73,13 @@ mongoose
       }),
       createUser,
     );
+
     app.use('/', auth, router);
+
     app.use('*', (req, res, next) => {
       next(new NotFoundError('Маршрут не найден'));
     });
+
     app.use(
       errors({
         statusCode: 400,

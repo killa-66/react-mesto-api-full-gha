@@ -15,6 +15,7 @@ class Auth {
     return fetch(`${this.baseUrl}/signup`, {
       method: "POST",
       headers: this.headers,
+      credentials: 'include',
       body: JSON.stringify(data)
     })
       .then(this._checkRes)
@@ -23,7 +24,6 @@ class Auth {
   login(data) {
     return fetch(`${this.baseUrl}/signin`, {
       method: "POST",
-      mode: "cors",
       credentials: "include",
       headers: this.headers,
       body: JSON.stringify(data)
@@ -36,7 +36,8 @@ class Auth {
       headers: {
         "Content-Type": "application/json",
         "Authorization": `Bearer ${jwt}`
-      }
+      },
+      credentials: "include",
     })
       .then(this._checkRes)
   }
