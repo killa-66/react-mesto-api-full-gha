@@ -152,6 +152,7 @@ function App() {
     setIsLoading(true);
     api.postNewCard(newCard)
       .then(res => {
+        console.log('Server response:', res);
         setCards([res, ...cards]);
         closeAllPopups();
       })
@@ -180,7 +181,6 @@ function App() {
     auth.login(data)
       .then(res => {
         setLoggedIn(true)
-        setEmail(data.email)
         Cookies.set('jwt', res.token)
       })
       .catch((err) => {
@@ -196,15 +196,14 @@ function App() {
   }
 
   function tokenCheck() {
-    const jwt = Cookies.get('jwt'); // получаем токен из куки
-    console.log(jwt)
+    const jwt = Cookies.get('jwt');
     if (jwt) {
       auth.checkToken(jwt)
         .then(result => {
           if (result) {
             api.setToken(jwt);
             setLoggedIn(true);
-            setEmail(result.data.email)
+            setEmail(result.email)
           }
         })
         .catch((err) => {
@@ -227,6 +226,7 @@ function App() {
             onLogout={handleLogout}
             isMobile={width <= 600}
           /> : ''}
+
           <Routes>
             <Route path="/" element={<ProtectedRoute element={Main}
               onEditProfile={handleEditProfileClick}
