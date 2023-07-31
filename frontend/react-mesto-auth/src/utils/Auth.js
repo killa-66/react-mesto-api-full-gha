@@ -35,7 +35,6 @@ class Auth {
     return fetch(`${this.baseUrl}/users/me`, {
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${jwt}`
       },
       credentials: "include",
     })

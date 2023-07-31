@@ -40,6 +40,7 @@ function App() {
       Promise.all([api.getUserInfo(), api.getInitialCards()])
         .then(([data, res]) => {
           setCurrentUser(data);
+          console.log(res)
           setCards(res.data)
         })
         .catch(err =>
@@ -119,14 +120,17 @@ function App() {
   }
 
   function handleCardLike(card) {
-    const isLiked = card.likes.some(i => i === currentUser._id);
-
+    const isLiked = card.likes.some(i => {
+      console.log('i', i)
+      console.log('current', currentUser._id)
+      return i === currentUser._id
+    });
     if (isLiked) {
       api.deleteLike(card._id)
         .then((newCard) => {
           setCards((state) => state.map((c) => {
-            console.log('map item:', c);
-            return c._id === card._id ? newCard : c;
+            // console.log('map item:', c._id);
+            return c === card._id ? newCard : c;
           }));
         })
         .catch(err =>
@@ -135,7 +139,7 @@ function App() {
     else {
       api.putLike(card._id)
         .then((newCard) => {
-          setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
+          setCards((state) => state.map((c) => c === card._id ? newCard : c));
         })
         .catch(err =>
           console.log('Error :', err))

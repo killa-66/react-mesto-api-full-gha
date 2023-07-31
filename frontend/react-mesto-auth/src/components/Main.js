@@ -26,9 +26,6 @@ function Main({ onAddPlaceClick, onEditAvatar, onCardClick, onEditProfile, onCar
           {
             cards.map((item) => {
               console.log(item.likes)
-              // console.log(item.likes.some(i => i === currentUser._id))
-              // console.log(item.likes)
-              //console.log(isLikedItem)
               return (
                 <Card
                   link={item.link}
