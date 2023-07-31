@@ -1,5 +1,4 @@
 import React, { useContext } from 'react'
-import { api } from '../utils/Api'
 import Card from './Card'
 import { CurrentUserContext } from '../contexts/CurrentUserContext'
 import { CardContext } from '../contexts/CardContext';
@@ -25,7 +24,11 @@ function Main({ onAddPlaceClick, onEditAvatar, onCardClick, onEditProfile, onCar
         </section>
         <section className="grid">
           {
-            cards.map(item => {
+            cards.map((item) => {
+              console.log(item)
+              // console.log(item.likes.some(i => i === currentUser._id))
+              // console.log(item.likes)
+              //console.log(isLikedItem)
               return (
                 <Card
                   link={item.link}
@@ -36,8 +39,10 @@ function Main({ onAddPlaceClick, onEditAvatar, onCardClick, onEditProfile, onCar
                   onCardLike={onCardLike}
                   onCardDelete={onCardDelete}
                   item={item}
-                />)
-            })}
+                />
+              );
+            })
+          }
         </section>
       </main >
     </>

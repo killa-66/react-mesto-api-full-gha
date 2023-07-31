@@ -3,8 +3,8 @@ import { CurrentUserContext } from '../contexts/CurrentUserContext';
 
 function Card(props) {
   const currentUser = useContext(CurrentUserContext);
-  const isOwn = props.item.owner._id === currentUser._id;
-  const isLiked = props.item.likes.some(i => i._id === currentUser._id);
+  const isOwn = props.item.owner === currentUser._id;
+  const isLiked = props.item.likes.some(i => i === currentUser._id);
   const cardLikeButtonClassName = (`grid__like ${isLiked && 'grid__like_active'}`);
 
 
