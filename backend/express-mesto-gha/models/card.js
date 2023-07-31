@@ -21,11 +21,11 @@ const cardSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
   },
-  likes: {
-    type: [mongoose.Schema.Types.ObjectId],
+  likes: [{
+    type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
     default: [],
-  },
+  }],
   createdAt: {
     type: Date,
     default: Date.now,
@@ -37,7 +37,7 @@ cardSchema.statics.isCardOwned = function (cardId, userId) {
       if (!card) {
         return Promise.reject(new Error('Карточка не найдена'));
       }
-      return card.owner.toString() === userId;
+      return JSON.stringify(card.owner) === JSON.stringify(userId);
     })
     .catch((err) => err);
 };

@@ -25,7 +25,7 @@ function Main({ onAddPlaceClick, onEditAvatar, onCardClick, onEditProfile, onCar
         <section className="grid">
           {
             cards.map((item) => {
-              console.log(item)
+              console.log(item.likes)
               // console.log(item.likes.some(i => i === currentUser._id))
               // console.log(item.likes)
               //console.log(isLikedItem)
