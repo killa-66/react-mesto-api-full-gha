@@ -4,15 +4,26 @@ const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const { celebrate, Joi, errors } = require('celebrate');
+const cors = require('cors');
 const router = require('./routes');
 const { login, createUser } = require('./controllers/users');
 const { auth } = require('./middlewares/auth');
 const { errorMiddleware } = require('./middlewares/errorMiddleware');
 const { NotFoundError } = require('./errors/NotFound');
-const cors = require('./middlewares/cors');
+
+const corsOptions = {
+  origin: [
+    'http://killa.students.nomoredomains.xyz',
+    'https://killa.students.nomoredomains.xyz',
+    'localhost:3001',
+    'http://localhost:3001',
+  ],
+  credentials: true,
+  maxAge: 60,
+};
 
 const app = express();
-app.use(cors);
+app.use(cors(corsOptions));
 app.use(express.json());
 
 mongoose

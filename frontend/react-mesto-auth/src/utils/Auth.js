@@ -14,8 +14,8 @@ class Auth {
   register(data) {
     return fetch(`${this.baseUrl}/signup`, {
       method: "POST",
+      credentials: "include",
       headers: this.headers,
-      credentials: 'include',
       body: JSON.stringify(data)
     })
       .then(this._checkRes)
@@ -23,8 +23,8 @@ class Auth {
 
   login(data) {
     return fetch(`${this.baseUrl}/signin`, {
-      method: "POST",
       credentials: "include",
+      method: "POST",
       headers: this.headers,
       body: JSON.stringify(data)
     })
@@ -35,15 +35,16 @@ class Auth {
     return fetch(`${this.baseUrl}/users/me`, {
       headers: {
         "Content-Type": "application/json",
-      },
-      credentials: "include",
+        "Authorization": `Bearer ${jwt}`
+      }
     })
       .then(this._checkRes)
   }
 }
 
 export const auth = new Auth({
-  baseUrl: 'https://api.killa.students.nomoredomains.xyz',
+  // baseUrl: 'https://api.killa.students.nomoredomains.xyz',
+  baseUrl: 'http://localhost:3000',
   headers: {
     'Content-Type': 'application/json'
   }

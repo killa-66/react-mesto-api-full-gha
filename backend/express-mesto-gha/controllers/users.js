@@ -119,14 +119,21 @@ const login = (req, res, next) => {
     .then((user) => {
       const token = jwt.sign(
         { _id: user._id },
-        NODE_ENV === 'production' ? JWT_SECRET : 'secret',
+        NODE_ENV === 'production'
+          ? JWT_SECRET
+          : 'dev-secret',
         {
           expiresIn: '7d',
         },
       );
-      return res
+      res
+        .cookie('jwt', token, {
+          maxAge: 3600000 * 24 * 7,
+          httpOnly: true,
+          sameSite: 'none',
+          secure: true,
+        })
         .send({
-          token,
           email: user.email,
           _id: user._id,
           name: user.name,
@@ -138,13 +145,14 @@ const login = (req, res, next) => {
       next(err);
     });
 };
-const getCurrentUser = (req, res, next) => {
+
+function getCurrentUser(req, res, next) {
   User.findById(req.user._id)
     .then((user) => {
       res.status(constants.HTTP_STATUS_OK).send(user);
     })
     .catch(() => next(new InternalServerError('Ошибка сервера')));
-};
+}
 
 module.exports = {
   createUser,
