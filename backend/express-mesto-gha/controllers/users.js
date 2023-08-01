@@ -8,8 +8,6 @@ const { InternalServerError } = require('../errors/InternalServer');
 const { NotFoundError } = require('../errors/NotFound');
 const { ConflictError } = require('../errors/ConflictError');
 
-const { JWT_SECRET, NODE_ENV } = process.env;
-
 const createUser = (req, res, next) => {
   // eslint-disable-next-line
   const { name, about, avatar, email, password } = req.body;
@@ -24,7 +22,7 @@ const createUser = (req, res, next) => {
         password: hash,
       })
         .then((data) => {
-          res.status(constants.HTTP_STATUS_OK).send({
+          res.status(constants.HTTP_STATUS_CREATED).send({
             email: data.email,
             _id: data._id,
             name: data.name,
@@ -119,15 +117,15 @@ const login = (req, res, next) => {
     .then((user) => {
       const token = jwt.sign(
         { _id: user._id },
-        NODE_ENV === 'production'
-          ? JWT_SECRET
+        process.env.NODE_ENV === 'production'
+          ? process.env.JWT_SECRET
           : 'dev-secret',
         {
           expiresIn: '7d',
         },
       );
       res
-        .cookie('jwt', token, {
+        .cookie('token', token, {
           maxAge: 3600000 * 24 * 7,
           httpOnly: true,
           sameSite: 'none',
@@ -142,17 +140,17 @@ const login = (req, res, next) => {
         });
     })
     .catch((err) => {
+      // eslint-disable-next-line no-param-reassign
       next(err);
     });
 };
-
-function getCurrentUser(req, res, next) {
+const getCurrentUser = (req, res, next) => {
   User.findById(req.user._id)
     .then((user) => {
       res.status(constants.HTTP_STATUS_OK).send(user);
     })
     .catch(() => next(new InternalServerError('Ошибка сервера')));
-}
+};
 
 module.exports = {
   createUser,
