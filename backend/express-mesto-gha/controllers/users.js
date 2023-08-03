@@ -10,7 +10,7 @@ const { ConflictError } = require('../errors/ConflictError');
 
 const createUser = (req, res, next) => {
   // eslint-disable-next-line
-  const { name, about, avatar, email, password } = req.body;
+  const {name, about, avatar, email, password} = req.body;
   bcrypt
     .hash(password, 10)
     .then((hash) => {
@@ -140,7 +140,6 @@ const login = (req, res, next) => {
         });
     })
     .catch((err) => {
-      // eslint-disable-next-line no-param-reassign
       next(err);
     });
 };
@@ -151,8 +150,13 @@ const getCurrentUser = (req, res, next) => {
     })
     .catch(() => next(new InternalServerError('Ошибка сервера')));
 };
+const signOut = (req, res) => {
+  res.clearCookie('token');
+  res.status(constants.HTTP_STATUS_OK).send('Выход выполнен успешно');
+};
 
 module.exports = {
+  signOut,
   createUser,
   getUsers,
   getUser,

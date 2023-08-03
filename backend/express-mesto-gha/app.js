@@ -6,8 +6,9 @@ const bodyParser = require('body-parser');
 const { celebrate, Joi, errors } = require('celebrate');
 // eslint-disable-next-line import/no-extraneous-dependencies
 const cors = require('cors');
+const { errorLogger } = require('express-winston');
 const router = require('./routes');
-const { login, createUser } = require('./controllers/users');
+const { login, createUser, signOut } = require('./controllers/users');
 const auth = require('./middlewares/auth');
 const { errorMiddleware } = require('./middlewares/errorMiddleware');
 const { NotFoundError } = require('./errors/NotFound');
@@ -18,6 +19,7 @@ const corsOptions = {
     'https://killa.students.nomoredomains.xyz',
     'localhost:3001',
     'http://localhost:3001',
+    'http://localhost:3002',
   ],
   credentials: true,
   maxAge: 60,
@@ -32,7 +34,6 @@ mongoose
   .then(() => {
     app.use(bodyParser.json());
     app.use(cookieParser());
-
     app.post(
       '/signin',
       celebrate({
@@ -85,7 +86,7 @@ mongoose
       }),
       createUser,
     );
-
+    app.post('/signout', signOut);
     app.use('/', auth, router);
 
     app.use('*', (req, res, next) => {
@@ -97,6 +98,7 @@ mongoose
         statusCode: 400,
       }),
     );
+    app.use(errorLogger);
     app.use(errorMiddleware);
 
     app.listen(3000, () => {

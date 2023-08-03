@@ -11,10 +11,6 @@ const handleAuthError = (res, next) => {
 module.exports = (req, res, next) => {
   const { token } = req.cookies;
   let payload;
-
-  // if (!token) {
-  //   return handleAuthError(res, next);
-  // }
   try {
     payload = jwt.verify(
       token,

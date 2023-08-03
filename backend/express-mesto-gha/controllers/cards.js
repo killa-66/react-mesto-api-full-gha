@@ -22,6 +22,7 @@ const createCard = (req, res, next) => {
       res.status(constants.HTTP_STATUS_CREATED).send(card);
     })
     .catch((error) => {
+      console.log(error);
       if (error instanceof mongoose.Error.ValidationError) {
         return next(new BadRequestError('Невалидные данные'));
       }
