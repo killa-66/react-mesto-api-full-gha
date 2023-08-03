@@ -12,6 +12,7 @@ const { login, createUser, signOut } = require('./controllers/users');
 const auth = require('./middlewares/auth');
 const { errorMiddleware } = require('./middlewares/errorMiddleware');
 const { NotFoundError } = require('./errors/NotFound');
+const { requestLogger } = require('./middlewares/logger');
 
 const corsOptions = {
   origin: [
@@ -34,6 +35,7 @@ mongoose
   .then(() => {
     app.use(bodyParser.json());
     app.use(cookieParser());
+    app.use(requestLogger);
     app.post(
       '/signin',
       celebrate({
@@ -98,8 +100,8 @@ mongoose
         statusCode: 400,
       }),
     );
-    app.use(errorLogger);
     app.use(errorMiddleware);
+    app.use(errorLogger);
 
     app.listen(3000, () => {
       console.error('Server started on port 3000');
