@@ -36,6 +36,11 @@ mongoose
     app.use(bodyParser.json());
     app.use(cookieParser());
     app.use(requestLogger);
+    app.get('/crash-test', () => {
+      setTimeout(() => {
+        throw new Error('Сервер сейчас упадёт');
+      }, 0);
+    });
     app.post(
       '/signin',
       celebrate({
@@ -100,8 +105,8 @@ mongoose
         statusCode: 400,
       }),
     );
-    app.use(errorMiddleware);
     app.use(errorLogger);
+    app.use(errorMiddleware);
 
     app.listen(3000, () => {
       console.error('Server started on port 3000');
