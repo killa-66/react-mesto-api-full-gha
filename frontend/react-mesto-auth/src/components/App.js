@@ -185,6 +185,7 @@ function App() {
 				localStorage.setItem('userId', res._id)
 				navigate('/', { replace: true })
 				setLoggedIn(true)
+				setEmail(data.email)
 			})
 			.catch((err) => {
 				setIsCorrectRegistration(false);
