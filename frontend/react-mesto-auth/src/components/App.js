@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import Footer from './Footer';
 import Header from './Header';
 import ImagePopup from './ImagePopup';
@@ -8,15 +8,15 @@ import PopupDeleteCard from './PopupDeleteCard';
 import PopupEditAvatar from './PopupEditAvatar';
 import PopupEditProfile from './PopupEditProfile';
 import PopupWithForm from './PopupWithForm';
-import {api} from '../utils/Api';
-import {CurrentUserContext} from '../contexts/CurrentUserContext';
-import {CardContext} from '../contexts/CardContext';
+import { api } from '../utils/Api';
+import { CurrentUserContext } from '../contexts/CurrentUserContext';
+import { CardContext } from '../contexts/CardContext';
 import Login from './Login';
 import Register from './Register';
-import {Navigate, Route, Routes, useNavigate} from 'react-router-dom';
+import { Navigate, Route, Routes, useNavigate } from 'react-router-dom';
 import ProtectedRoute from './ProtectedRoute';
 import InfoToolTip from './InfoToolTip';
-import {auth} from '../utils/Auth'
+import { auth } from '../utils/Auth'
 
 function App() {
 	const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
@@ -112,8 +112,8 @@ function App() {
 			.catch(err =>
 				console.log('Error :', err))
 			.finally(() => {
-					setIsLoading(false)
-				}
+				setIsLoading(false)
+			}
 			)
 	}
 
@@ -170,7 +170,7 @@ function App() {
 			.then(res => {
 				setIsCorrectRegistration(true)
 				setIsInfoToolTipOpen(true)
-				navigate("/signin", {replace: true})
+				navigate("/signin", { replace: true })
 			})
 			.catch(err => {
 				setIsCorrectRegistration(false)
@@ -183,7 +183,7 @@ function App() {
 		auth.login(data)
 			.then(res => {
 				localStorage.setItem('userId', res._id)
-				navigate('/', {replace: true})
+				navigate('/', { replace: true })
 				setLoggedIn(true)
 			})
 			.catch((err) => {
@@ -200,7 +200,7 @@ function App() {
 				return res
 			})
 			.catch(console.log)
-		navigate('./sign-in', {replace: true})
+		navigate('./sign-in', { replace: true })
 		setLoggedIn(false)
 	}
 
@@ -236,26 +236,26 @@ function App() {
 					/> : ''}
 					<Routes>
 						<Route path="/" element={<ProtectedRoute element={Main}
-																										 onEditProfile={handleEditProfileClick}
-																										 onAddPlaceClick={handleAddPlaceClick}
-																										 onEditAvatar={handleEditAvatarClick}
-																										 onCardClick={handleCardClick}
-																										 onCardLike={handleCardLike}
-																										 onCardDelete={handleCardDelete}
-																										 loggedIn={loggedIn}
-						/>}/>
+							onEditProfile={handleEditProfileClick}
+							onAddPlaceClick={handleAddPlaceClick}
+							onEditAvatar={handleEditAvatarClick}
+							onCardClick={handleCardClick}
+							onCardLike={handleCardLike}
+							onCardDelete={handleCardDelete}
+							loggedIn={loggedIn}
+						/>} />
 						<Route path="/signin"
-									 element={loggedIn ? <Navigate to="/" replace/> : <Login onLogin={handleSubmitLogin}/>}/>
+							element={loggedIn ? <Navigate to="/" replace /> : <Login onLogin={handleSubmitLogin} />} />
 						<Route path="/signup"
-									 element={loggedIn ? <Navigate to="/" replace/> : <Register onRegister={handleSubmitRegistration}/>}/>
+							element={loggedIn ? <Navigate to="/" replace /> : <Register onRegister={handleSubmitRegistration} />} />
 					</Routes>
 
-					{loggedIn ? <Footer/> : ''}
+					{loggedIn ? <Footer /> : ''}
 					<ImagePopup
 						card={selectedCard}
 						onClose={closeAllPopups}
 					/>
-					<PopupWithForm/>
+					<PopupWithForm />
 					<PopupEditAvatar
 						isOpen={isEditAvatarPopupOpen}
 						onClose={closeAllPopups}
